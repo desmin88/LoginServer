@@ -29,7 +29,7 @@ public class HandShakeCodec extends MessageCodec<HandShakeMessage> {
 
     @Override
     public ChannelBuffer encode(HandShakeMessage message) throws IOException {
-        ChannelBuffer buffer = ChannelBuffers.dynamicBuffer();
+        ChannelBuffer buffer = ChannelBuffers.buffer(1);
         buffer.writeByte(message.getHandShake());
         return buffer;
     }

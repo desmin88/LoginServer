@@ -1,5 +1,6 @@
 package me.desmin88.silkroad.loginserver.net;
 
+import com.sun.servicetag.SystemEnvironment;
 import me.desmin88.silkroad.loginserver.net.abstracts.MessageCodec;
 import me.desmin88.silkroad.loginserver.net.abstracts.Message;
 import org.jboss.netty.buffer.ChannelBuffer;
@@ -37,12 +38,16 @@ public class SilkroadEncoder extends OneToOneEncoder {
             opcodeBuffer.writeShort(codec.getOpcode());
             opcodeBuffer.writeShort(0);
 
+            System.out.println("opCodeBuffer = " + Arrays.toString(opcodeBuffer.toByteBuffer().array()));
+            System.out.println("Encoded handshake = " + Arrays.toString(codec.encode(message).toByteBuffer().array()));
+
             ChannelBuffer beforeLength = ChannelBuffers.wrappedBuffer(opcodeBuffer, codec.encode(message));
             int length = beforeLength.toByteBuffer().array().length - 4;
-
+            System.out.println("length = " + length);
             ChannelBuffer lengthBuffer = ChannelBuffers.dynamicBuffer(3);
             lengthBuffer.writeShort(length);
 
+            System.out.println("lenthBuffer = " + Arrays.toString(lengthBuffer.toByteBuffer().array()));
             ChannelBuffer finalBuffer = ChannelBuffers.wrappedBuffer(lengthBuffer, beforeLength);
 
             System.out.println(Arrays.toString(finalBuffer.toByteBuffer().array()));

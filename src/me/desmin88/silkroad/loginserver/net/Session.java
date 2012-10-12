@@ -18,7 +18,6 @@ public class Session {
     public Session(Channel channel) {
         this.channel = channel;
         channel.write(new HandShakeMessage((byte) 0x01));
-        //TODO send handshake
     }
 
    public void messageReceived(Message message) {
