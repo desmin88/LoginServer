@@ -32,8 +32,9 @@ public class SilkroadEncoder extends OneToOneEncoder {
                 throw new IOException("Unknown message type: " + clazz + ".");
             }
 
+
             ChannelBuffer opcodeBuffer = ChannelBuffers.dynamicBuffer(3);
-            opcodeBuffer.writeShort(0x5000);
+            opcodeBuffer.writeShort(codec.getOpcode());
             opcodeBuffer.writeShort(0);
 
             ChannelBuffer beforeLength = ChannelBuffers.wrappedBuffer(opcodeBuffer, codec.encode(message));
