@@ -1,7 +1,7 @@
 package me.desmin88.silkroad.loginserver.net;
 
-import me.desmin88.silkroad.loginserver.abstracts.Message;
-import me.desmin88.silkroad.loginserver.msg.HandShakeMessage;
+import me.desmin88.silkroad.loginserver.net.abstracts.Message;
+import me.desmin88.silkroad.loginserver.net.msg.HandShakeMessage;
 import org.jboss.netty.channel.Channel;
 
 /**

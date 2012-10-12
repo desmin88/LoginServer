@@ -1,4 +1,4 @@
-package me.desmin88.silkroad.loginserver.abstracts;
+package me.desmin88.silkroad.loginserver.net.abstracts;
 
 /**
  * Created by William Ryan

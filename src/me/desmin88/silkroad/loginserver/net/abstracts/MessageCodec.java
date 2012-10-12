@@ -1,5 +1,6 @@
-package me.desmin88.silkroad.loginserver.abstracts;
+package me.desmin88.silkroad.loginserver.net.abstracts;
 
+import me.desmin88.silkroad.loginserver.net.abstracts.Message;
 import org.jboss.netty.buffer.ChannelBuffer;
 
 import java.io.IOException;

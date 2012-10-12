@@ -1,7 +1,7 @@
 package me.desmin88.silkroad.loginserver.net;
 
-import me.desmin88.silkroad.loginserver.abstracts.MessageCodec;
-import me.desmin88.silkroad.loginserver.abstracts.Message;
+import me.desmin88.silkroad.loginserver.net.abstracts.MessageCodec;
+import me.desmin88.silkroad.loginserver.net.abstracts.Message;
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.buffer.ChannelBuffers;
 import org.jboss.netty.channel.Channel;

@@ -1,9 +1,7 @@
-package me.desmin88.silkroad.loginserver.codec;
+package me.desmin88.silkroad.loginserver.net.codec;
 
-import me.desmin88.silkroad.loginserver.abstracts.MessageCodec;
-import me.desmin88.silkroad.loginserver.msg.GatewayInfoMessage;
-import me.desmin88.silkroad.loginserver.msg.HandShakeMessage;
-import me.desmin88.silkroad.loginserver.utils.ChannelBufferUtils;
+import me.desmin88.silkroad.loginserver.net.abstracts.MessageCodec;
+import me.desmin88.silkroad.loginserver.net.msg.HandShakeMessage;
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.buffer.ChannelBuffers;
 

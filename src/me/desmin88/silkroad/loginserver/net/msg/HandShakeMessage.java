@@ -1,6 +1,6 @@
-package me.desmin88.silkroad.loginserver.msg;
+package me.desmin88.silkroad.loginserver.net.msg;
 
-import me.desmin88.silkroad.loginserver.abstracts.Message;
+import me.desmin88.silkroad.loginserver.net.abstracts.Message;
 
 /**
  * Created by William Ryan

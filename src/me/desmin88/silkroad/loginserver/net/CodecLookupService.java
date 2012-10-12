@@ -1,9 +1,9 @@
 package me.desmin88.silkroad.loginserver.net;
 
-import me.desmin88.silkroad.loginserver.codec.GatewayInfoCodec;
-import me.desmin88.silkroad.loginserver.abstracts.MessageCodec;
-import me.desmin88.silkroad.loginserver.abstracts.Message;
-import me.desmin88.silkroad.loginserver.codec.HandShakeCodec;
+import me.desmin88.silkroad.loginserver.net.codec.GatewayInfoCodec;
+import me.desmin88.silkroad.loginserver.net.abstracts.MessageCodec;
+import me.desmin88.silkroad.loginserver.net.abstracts.Message;
+import me.desmin88.silkroad.loginserver.net.codec.HandShakeCodec;
 
 import java.util.HashMap;
 import java.util.Map;

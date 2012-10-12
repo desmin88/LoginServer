@@ -1,10 +1,7 @@
 package me.desmin88.silkroad.loginserver.net;
 
 import me.desmin88.silkroad.loginserver.LoginServer;
-import me.desmin88.silkroad.loginserver.abstracts.Message;
-import me.desmin88.silkroad.loginserver.codec.GatewayInfoCodec;
-import me.desmin88.silkroad.loginserver.msg.GatewayInfoMessage;
-import me.desmin88.silkroad.loginserver.msg.HandShakeMessage;
+import me.desmin88.silkroad.loginserver.net.abstracts.Message;
 import org.jboss.netty.channel.*;
 
 import java.util.logging.Level;
@@ -58,8 +55,7 @@ public class SilkroadHandler extends SimpleChannelUpstreamHandler {
     public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) {
         Session session = (Session) ctx.getAttachment();
         session.messageReceived((Message) e.getMessage());
-        System.out.println("weep");
-   }
+    }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, ExceptionEvent e) {
