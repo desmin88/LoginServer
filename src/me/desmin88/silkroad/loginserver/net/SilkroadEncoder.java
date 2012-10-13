@@ -34,8 +34,6 @@ public class SilkroadEncoder extends OneToOneEncoder {
                 throw new IOException("Unknown message type: " + clazz + ".");
             }
 
-
-
             // START: OPCODE BUFFER (TYPE: LITTLE-ENDIAN)
             ChannelBuffer opcodeBuffer = ChannelBuffers.buffer(ByteOrder.LITTLE_ENDIAN, 4);
             opcodeBuffer.writeShort(codec.getOpcode());
@@ -49,34 +47,22 @@ public class SilkroadEncoder extends OneToOneEncoder {
 
             int length = (opcodeBuffer.array().length + encodedMessage.array().length) - 4;
 
-            // START: LENGTH BUFFER (TYPE: LITTLE-ENDIAN)
+            // START: LENGTH BUFFER (TYPE: LITTLE-ENDIAN) (Length of the packet must be affixed to the beginning, minus the length of the length buffer)
             ChannelBuffer lengthBuffer = ChannelBuffers.buffer(ByteOrder.LITTLE_ENDIAN, 2);
             lengthBuffer.writeShort(length);
             // END: LENGTH BUFFER
 
-
-
-
-            //ChannelBuffer beforeLength = ChannelBuffers.wrappedBuffer(ByteOrder.LITTLE_ENDIAN, opcodeBuffer.array(), codec.encode(message).array());
-            //int length = opcodeBuffer.array().length + encodedMessage.array().length - 4;
-
-
-            //ChannelBuffer lengthBuffer = ChannelBuffers.buffer(ByteOrder.LITTLE_ENDIAN, 2);
-            //lengthBuffer.writeShort(length);
-
-
-
             ChannelBuffer finalBuffer = ChannelBuffers.wrappedBuffer(lengthBuffer, opcodeBuffer, encodedMessage);
 
 
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             System.out.println("opCode = "+  codec.getOpcode());
             System.out.println("opCodeBuffer = " + Arrays.toString(opcodeBuffer.toByteBuffer().array()));
             System.out.println("Encoded handshake = " + Arrays.toString(codec.encode(message).toByteBuffer().array()));
             System.out.println("length = " + length);
-            System.out.println("lenthBuffer = " + Arrays.toString(lengthBuffer.toByteBuffer().array()));
+            System.out.println("lengthBuffer = " + Arrays.toString(lengthBuffer.toByteBuffer().array()));
             System.out.println(Arrays.toString(finalBuffer.toByteBuffer().array()));
-
-
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
             return finalBuffer;
         }
