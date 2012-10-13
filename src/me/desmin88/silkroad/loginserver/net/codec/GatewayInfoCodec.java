@@ -7,6 +7,7 @@ import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.buffer.ChannelBuffers;
 
 import java.io.IOException;
+import java.nio.ByteOrder;
 
 /**
  * Created by William Ryan
@@ -37,7 +38,8 @@ public class GatewayInfoCodec extends MessageCodec<GatewayInfoMessage> {
 
     @Override
     public ChannelBuffer encode(GatewayInfoMessage message) throws IOException {
-        ChannelBuffer buffer = ChannelBuffers.dynamicBuffer();
+        ChannelBuffer buffer = ChannelBuffers.dynamicBuffer(ByteOrder.LITTLE_ENDIAN, 20);
+
         buffer.writeShort(message.getNameLength());
         ChannelBufferUtils.writeString(buffer, message.getName());
         if(message.getFlag())

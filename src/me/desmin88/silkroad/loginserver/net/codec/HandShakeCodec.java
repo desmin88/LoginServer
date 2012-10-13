@@ -6,6 +6,7 @@ import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.buffer.ChannelBuffers;
 
 import java.io.IOException;
+import java.nio.ByteOrder;
 
 /**
  * Created by William Ryan
@@ -29,7 +30,7 @@ public class HandShakeCodec extends MessageCodec<HandShakeMessage> {
 
     @Override
     public ChannelBuffer encode(HandShakeMessage message) throws IOException {
-        ChannelBuffer buffer = ChannelBuffers.buffer(1);
+        ChannelBuffer buffer = ChannelBuffers.buffer(ByteOrder.LITTLE_ENDIAN, 1);
         buffer.writeByte(message.getHandShake());
         return buffer;
     }

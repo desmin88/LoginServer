@@ -10,6 +10,7 @@ import org.jboss.netty.channel.ChannelHandlerContext;
 import org.jboss.netty.handler.codec.oneone.OneToOneEncoder;
 
 import java.io.IOException;
+import java.nio.ByteOrder;
 import java.util.Arrays;
 
 /**
@@ -34,23 +35,49 @@ public class SilkroadEncoder extends OneToOneEncoder {
             }
 
 
-            ChannelBuffer opcodeBuffer = ChannelBuffers.dynamicBuffer(3);
+
+            // START: OPCODE BUFFER (TYPE: LITTLE-ENDIAN)
+            ChannelBuffer opcodeBuffer = ChannelBuffers.buffer(ByteOrder.LITTLE_ENDIAN, 4);
             opcodeBuffer.writeShort(codec.getOpcode());
             opcodeBuffer.writeShort(0);
+            // END: OPCODE BUFFER
 
+
+            // START: ENCODE MESSAGE (TYPE: LITTLE-ENDIAN)
+            ChannelBuffer encodedMessage = codec.encode(message);
+            // END: ENCODE MESSAGE
+
+            int length = (opcodeBuffer.array().length + encodedMessage.array().length) - 4;
+
+            // START: LENGTH BUFFER (TYPE: LITTLE-ENDIAN)
+            ChannelBuffer lengthBuffer = ChannelBuffers.buffer(ByteOrder.LITTLE_ENDIAN, 2);
+            lengthBuffer.writeShort(length);
+            // END: LENGTH BUFFER
+
+
+
+
+            //ChannelBuffer beforeLength = ChannelBuffers.wrappedBuffer(ByteOrder.LITTLE_ENDIAN, opcodeBuffer.array(), codec.encode(message).array());
+            //int length = opcodeBuffer.array().length + encodedMessage.array().length - 4;
+
+
+            //ChannelBuffer lengthBuffer = ChannelBuffers.buffer(ByteOrder.LITTLE_ENDIAN, 2);
+            //lengthBuffer.writeShort(length);
+
+
+
+            ChannelBuffer finalBuffer = ChannelBuffers.wrappedBuffer(lengthBuffer, opcodeBuffer, encodedMessage);
+
+
+            System.out.println("opCode = "+  codec.getOpcode());
             System.out.println("opCodeBuffer = " + Arrays.toString(opcodeBuffer.toByteBuffer().array()));
             System.out.println("Encoded handshake = " + Arrays.toString(codec.encode(message).toByteBuffer().array()));
-
-            ChannelBuffer beforeLength = ChannelBuffers.wrappedBuffer(opcodeBuffer, codec.encode(message));
-            int length = beforeLength.toByteBuffer().array().length - 4;
             System.out.println("length = " + length);
-            ChannelBuffer lengthBuffer = ChannelBuffers.dynamicBuffer(3);
-            lengthBuffer.writeShort(length);
-
             System.out.println("lenthBuffer = " + Arrays.toString(lengthBuffer.toByteBuffer().array()));
-            ChannelBuffer finalBuffer = ChannelBuffers.wrappedBuffer(lengthBuffer, beforeLength);
-
             System.out.println(Arrays.toString(finalBuffer.toByteBuffer().array()));
+
+
+
             return finalBuffer;
         }
         return msg;

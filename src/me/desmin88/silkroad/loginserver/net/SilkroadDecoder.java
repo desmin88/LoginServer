@@ -23,8 +23,13 @@ public class SilkroadDecoder extends ReplayingDecoder<VoidEnum>{
 
     @Override
     protected Object decode(ChannelHandlerContext ctx, Channel c, ChannelBuffer buf, VoidEnum state) throws Exception {
-        int length = buf.readUnsignedByte();
-        int opcode = buf.readUnsignedByte();
+        System.out.println("weep1");
+        short data;
+
+        while((data = buf.readShort()) != -1)  {
+            System.out.println(data);
+        }
+        short opcode = data;
 
         MessageCodec<?> codec = CodecLookupService.find(opcode);
         if (codec == null) {
