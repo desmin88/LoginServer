@@ -21,7 +21,7 @@ public class Session {
     }
 
    public void messageReceived(Message message) {
-
+       System.out.println("Message received in session");
    }
 
 

@@ -23,12 +23,18 @@ public class SilkroadDecoder extends ReplayingDecoder<VoidEnum>{
 
     @Override
     protected Object decode(ChannelHandlerContext ctx, Channel c, ChannelBuffer buf, VoidEnum state) throws Exception {
+
         short data;
 
-        while((data = buf.readShort()) != -1)  {
-            System.out.println(data);
+        //For some reason were getting trailing zeros or negative numbers.. idk
+        while((data = buf.readShort()) != -1 && data <= 0)  {
+            ;
         }
-        short opcode = data;
+
+        short length = data;
+        short opcode = buf.readShort();
+        short trailingzero = buf.readShort();
+
 
         MessageCodec<?> codec = CodecLookupService.find(opcode);
         if (codec == null) {

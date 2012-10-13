@@ -33,6 +33,7 @@ public class GatewayInfoCodec extends MessageCodec<GatewayInfoMessage> {
             flag = true;
         else
             flag = false;
+        System.out.println(1);
         return new GatewayInfoMessage(nameLength, name, flag);
     }
 

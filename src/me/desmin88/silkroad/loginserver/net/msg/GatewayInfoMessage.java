@@ -11,11 +11,11 @@ import me.desmin88.silkroad.loginserver.net.abstracts.Message;
  */
 public class GatewayInfoMessage extends Message {
 
-    private int nameLength = "GatewayServer".length();
+    private int nameLength = 0; // Possibly values [9, 13]
 
-    private String name = "GatewayServer";
+    private String name = "";  // Possible values [SR_Client, GatewayServer]
 
-    private boolean flag;
+    private boolean flag; // Possible values [0x00, 0x01]
 
     public GatewayInfoMessage(int nameLength, String name, boolean flag) {
         this.nameLength = nameLength;

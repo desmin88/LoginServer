@@ -55,6 +55,7 @@ public class SilkroadHandler extends SimpleChannelUpstreamHandler {
     public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) {
         Session session = (Session) ctx.getAttachment();
         session.messageReceived((Message) e.getMessage());
+        System.out.println("Message received in handler");
     }
 
     @Override
