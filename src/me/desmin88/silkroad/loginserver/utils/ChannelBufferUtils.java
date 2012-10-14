@@ -63,7 +63,6 @@ public class ChannelBufferUtils {
         for (int i = 0; i < len; i++) {
             characters[i] = buf.readChar();
         }
-
         return new String(characters);
     }
 

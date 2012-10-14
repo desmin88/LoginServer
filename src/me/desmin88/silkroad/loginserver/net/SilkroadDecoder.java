@@ -1,9 +1,11 @@
 package me.desmin88.silkroad.loginserver.net;
 
 import me.desmin88.silkroad.loginserver.net.abstracts.MessageCodec;
+import me.desmin88.silkroad.loginserver.net.msg.GatewayInfoMessage;
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.channel.Channel;
 import org.jboss.netty.channel.ChannelHandlerContext;
+import org.jboss.netty.channel.MessageEvent;
 import org.jboss.netty.handler.codec.replay.ReplayingDecoder;
 import org.jboss.netty.handler.codec.replay.VoidEnum;
 
@@ -24,6 +26,7 @@ public class SilkroadDecoder extends ReplayingDecoder<VoidEnum>{
     @Override
     protected Object decode(ChannelHandlerContext ctx, Channel c, ChannelBuffer buf, VoidEnum state) throws Exception {
         System.out.println("Message received in decoder");
+
         short data;
 
         //For some reason were getting trailing zeros or negative numbers.. idk
@@ -34,7 +37,6 @@ public class SilkroadDecoder extends ReplayingDecoder<VoidEnum>{
         short length = data;
         short opcode = buf.readShort();
         short trailingzero = buf.readShort();
-
 
         MessageCodec<?> codec = CodecLookupService.find(opcode);
         if (codec == null) {

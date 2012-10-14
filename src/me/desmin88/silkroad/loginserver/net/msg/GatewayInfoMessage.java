@@ -35,5 +35,12 @@ public class GatewayInfoMessage extends Message {
         return flag;
     }
 
-
+    @Override
+    public String toString() {
+        return "GatewayInfoMessage{" +
+                "nameLength=" + nameLength +
+                ", name='" + name + '\'' +
+                ", flag=" + flag +
+                '}';
+    }
 }
