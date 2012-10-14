@@ -22,8 +22,7 @@ public class Session {
     }
 
    public void messageReceived(Message message) {
-       System.out.println("Message received in session");
-       //TODO protocol implementation
+        //TODO protocol implementation
         if(message instanceof HandShakeMessage) {
             // Not possible
         }
@@ -34,12 +33,6 @@ public class Session {
             boolean flag = true;
             GatewayInfoMessage toSend = new GatewayInfoMessage(length, name, flag);
             channel.write(toSend);
-
         }
-
-
-       System.out.println("Message received in session");
-   }
-
-
+    }
 }

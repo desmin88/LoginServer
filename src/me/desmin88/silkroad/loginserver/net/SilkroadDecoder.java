@@ -25,8 +25,6 @@ public class SilkroadDecoder extends ReplayingDecoder<VoidEnum>{
 
     @Override
     protected Object decode(ChannelHandlerContext ctx, Channel c, ChannelBuffer buf, VoidEnum state) throws Exception {
-        System.out.println("Message received in decoder");
-
         short data;
 
         //For some reason were getting trailing zeros or negative numbers.. idk

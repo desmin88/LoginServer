@@ -26,6 +26,7 @@ public class SilkroadEncoder extends OneToOneEncoder {
     @Override
     protected Object encode(ChannelHandlerContext ctx, Channel c, Object msg) throws Exception {
         if (msg instanceof Message) {
+
             Message message = (Message) msg;
 
             Class<? extends Message> clazz = message.getClass();
@@ -55,14 +56,15 @@ public class SilkroadEncoder extends OneToOneEncoder {
             ChannelBuffer finalBuffer = ChannelBuffers.wrappedBuffer(lengthBuffer, opcodeBuffer, encodedMessage);
 
 
-//            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-//            System.out.println("opCode = "+  codec.getOpcode());
-//            System.out.println("opCodeBuffer = " + Arrays.toString(opcodeBuffer.toByteBuffer().array()));
-//            System.out.println("Encoded handshake = " + Arrays.toString(codec.encode(message).toByteBuffer().array()));
-//            System.out.println("length = " + length);
-//            System.out.println("lengthBuffer = " + Arrays.toString(lengthBuffer.toByteBuffer().array()));
-//            System.out.println(Arrays.toString(finalBuffer.toByteBuffer().array()));
-//            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            System.out.println("opCode = "+  codec.getOpcode());
+            System.out.println("opCodeBuffer = " + Arrays.toString(opcodeBuffer.toByteBuffer().array()));
+            System.out.println("Encoded handshake = " + Arrays.toString(codec.encode(message).toByteBuffer().array()));
+            System.out.println("length = " + length);
+            System.out.println("lengthBuffer = " + Arrays.toString(lengthBuffer.toByteBuffer().array()));
+            System.out.println(Arrays.toString(finalBuffer.toByteBuffer().array()));
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
 
             return finalBuffer;
         }
