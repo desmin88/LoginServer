@@ -25,16 +25,13 @@ public class GatewayInfoCodec extends MessageCodec<GatewayInfoMessage> {
 
     @Override
     public GatewayInfoMessage decode(ChannelBuffer buffer) throws IOException {
-        int nameLength = buffer.readShort();
+        //int nameLength = buffer.readShort(); Taken care of in buffer utils
         String name = ChannelBufferUtils.readString(buffer);
         byte flagTemp = buffer.readByte();
         boolean flag;
-        if(flagTemp == 1)
-            flag = true;
-        else
-            flag = false;
-        System.out.println(1);
-        return new GatewayInfoMessage(nameLength, name, flag);
+        flag = (flagTemp == 1) ? true : false;
+
+        return new GatewayInfoMessage(name.length(), name, flag);
     }
 
     @Override
@@ -42,7 +39,7 @@ public class GatewayInfoCodec extends MessageCodec<GatewayInfoMessage> {
         ChannelBuffer buffer = ChannelBuffers.dynamicBuffer(ByteOrder.LITTLE_ENDIAN, 20);
 
         buffer.writeShort(message.getNameLength());
-        ChannelBufferUtils.writeString(buffer, message.getName());
+        buffer.writeBytes(message.getName().getBytes());
         if(message.getFlag())
             buffer.writeByte(1);
         else
