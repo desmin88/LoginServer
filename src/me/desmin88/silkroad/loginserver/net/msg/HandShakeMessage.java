@@ -11,7 +11,7 @@ import me.desmin88.silkroad.loginserver.net.abstracts.Message;
  */
 public class HandShakeMessage extends Message {
 
-       private byte HandShake = 0x01;
+       private byte HandShake = 0x01;  // Possible values [0x01]
 
        public HandShakeMessage(byte handShake) {
            this.HandShake = handShake;

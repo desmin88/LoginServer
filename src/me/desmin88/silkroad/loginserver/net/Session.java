@@ -1,6 +1,7 @@
 package me.desmin88.silkroad.loginserver.net;
 
 import me.desmin88.silkroad.loginserver.net.abstracts.Message;
+import me.desmin88.silkroad.loginserver.net.msg.GatewayInfoMessage;
 import me.desmin88.silkroad.loginserver.net.msg.HandShakeMessage;
 import org.jboss.netty.channel.Channel;
 
@@ -21,6 +22,22 @@ public class Session {
     }
 
    public void messageReceived(Message message) {
+       System.out.println("Message received in session");
+       //TODO protocol implementation
+        if(message instanceof HandShakeMessage) {
+            // Not possible
+        }
+        else if(message instanceof GatewayInfoMessage) {
+            // Requesting gateway info, send them the correct packet.
+            String name = "GatewayServer";
+            int length  = name.length();
+            boolean flag = true;
+            GatewayInfoMessage toSend = new GatewayInfoMessage(length, name, flag);
+            channel.write(toSend);
+
+        }
+
+
        System.out.println("Message received in session");
    }
 

@@ -11,7 +11,7 @@ import me.desmin88.silkroad.loginserver.net.abstracts.Message;
  */
 public class GatewayInfoMessage extends Message {
 
-    private int nameLength = 0; // Possibly values [9, 13]
+    private int nameLength = 0; // Possible values [9, 13]
 
     private String name = "";  // Possible values [SR_Client, GatewayServer]
 

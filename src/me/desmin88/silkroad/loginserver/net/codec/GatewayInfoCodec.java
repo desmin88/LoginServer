@@ -38,14 +38,14 @@ public class GatewayInfoCodec extends MessageCodec<GatewayInfoMessage> {
     public ChannelBuffer encode(GatewayInfoMessage message) throws IOException {
         ChannelBuffer buffer = ChannelBuffers.dynamicBuffer(ByteOrder.LITTLE_ENDIAN, 20);
 
-        buffer.writeShort(message.getNameLength());
-        buffer.writeBytes(message.getName().getBytes());
+        //buffer.writeShort(message.getNameLength());
+        //buffer.writeBytes(message.getName().getBytes());
+        ChannelBufferUtils.writeString(buffer, message.getName());
         if(message.getFlag())
             buffer.writeByte(1);
         else
             buffer.writeByte(0);
 
-        System.out.println(buffer.toByteBuffer().toString());
         return buffer;
     }
 
