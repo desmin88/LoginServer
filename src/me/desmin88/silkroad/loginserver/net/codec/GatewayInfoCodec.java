@@ -37,7 +37,7 @@ public class GatewayInfoCodec extends MessageCodec<GatewayInfoMessage> {
 
     @Override
     public ChannelBuffer encode(GatewayInfoMessage message) throws IOException {
-        ChannelBuffer buffer = ChannelBuffers.dynamicBuffer(ByteOrder.LITTLE_ENDIAN, 20);
+        ChannelBuffer buffer = ChannelBuffers.dynamicBuffer(ByteOrder.LITTLE_ENDIAN, 16);
 
         //buffer.writeShort(message.getNameLength());
         //buffer.writeBytes(message.getName().getBytes());
