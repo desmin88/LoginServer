@@ -7,6 +7,7 @@ import org.jboss.netty.buffer.ChannelBuffers;
 
 import java.io.IOException;
 import java.nio.ByteOrder;
+import java.util.Arrays;
 
 /**
  * Created by William Ryan
@@ -24,8 +25,7 @@ public class RequestLauncherInfoCodec extends MessageCodec<RequestLauncherInfoMe
 
     @Override
     public RequestLauncherInfoMessage decode(ChannelBuffer buffer) throws IOException {
-        byte locale = buffer.readByte();
-        return new RequestLauncherInfoMessage(locale);
+        return new RequestLauncherInfoMessage();
     }
 
     @Override

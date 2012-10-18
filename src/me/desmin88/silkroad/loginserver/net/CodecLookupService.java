@@ -66,6 +66,8 @@ public class CodecLookupService {
 
 
     public static MessageCodec<?> find(int opcode) {
+        if(opcode == -28672)
+            return opcodeTable[0x9000];
         return opcodeTable[opcode];
     }
 

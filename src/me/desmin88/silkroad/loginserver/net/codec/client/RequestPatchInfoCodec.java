@@ -8,6 +8,7 @@ import org.jboss.netty.buffer.ChannelBuffers;
 
 import java.io.IOException;
 import java.nio.ByteOrder;
+import java.util.Arrays;
 
 /**
  * Created by William Ryan
@@ -27,7 +28,8 @@ public class RequestPatchInfoCodec extends MessageCodec<RequestPatchInfoMessage>
     public RequestPatchInfoMessage decode(ChannelBuffer buffer) throws IOException {
         byte locale = buffer.readByte();
         String clientName = ChannelBufferUtils.readUtf8String(buffer);
-        return new RequestPatchInfoMessage(locale, (byte) clientName.length(), clientName, buffer.readDouble());
+        int clientVersion = buffer.readInt();
+        return new RequestPatchInfoMessage(locale, (byte) clientName.length(), clientName, clientVersion);
     }
 
     @Override

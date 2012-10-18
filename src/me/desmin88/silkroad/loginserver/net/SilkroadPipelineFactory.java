@@ -4,7 +4,6 @@ import me.desmin88.silkroad.loginserver.LoginServer;
 import org.jboss.netty.channel.ChannelPipeline;
 import org.jboss.netty.channel.ChannelPipelineFactory;
 import org.jboss.netty.channel.Channels;
-import org.jboss.netty.channel.StaticChannelPipeline;
 
 /**
  * Created by William Ryan
@@ -30,7 +29,7 @@ public class SilkroadPipelineFactory implements ChannelPipelineFactory {
 
     @Override
     public ChannelPipeline getPipeline() throws Exception {
-        return Channels.pipeline(new SilkroadDecoder(), new SilkroadEncoder(), new SilkroadHandler(server));
+        return Channels.pipeline(new SilkroadPacketFrameDecoder(), new SilkroadEncoder(), new SilkroadHandler(server));
     }
 
 

@@ -11,13 +11,9 @@ import me.desmin88.silkroad.loginserver.net.abstracts.Message;
  */
 public class RequestLauncherInfoMessage extends Message {
 
-    private byte locale;
+    public RequestLauncherInfoMessage() {
 
-    public RequestLauncherInfoMessage(byte Locale) {
-        this.locale = Locale;
     }
 
-    public byte getLocale() {
-        return locale;
-    }
+
 }
