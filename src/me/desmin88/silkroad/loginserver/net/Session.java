@@ -1,8 +1,11 @@
 package me.desmin88.silkroad.loginserver.net;
 
 import me.desmin88.silkroad.loginserver.net.abstracts.Message;
+import me.desmin88.silkroad.loginserver.net.codec.client.KeepAliveCodec;
 import me.desmin88.silkroad.loginserver.net.msg.GatewayInfoMessage;
-import me.desmin88.silkroad.loginserver.net.msg.HandShakeMessage;
+import me.desmin88.silkroad.loginserver.net.msg.client.*;
+import me.desmin88.silkroad.loginserver.net.msg.server.HandShakeMessage;
+import me.desmin88.silkroad.loginserver.net.msg.server.PatchInfoMessage;
 import org.jboss.netty.channel.Channel;
 
 /**
@@ -23,10 +26,7 @@ public class Session {
 
    public void messageReceived(Message message) {
         //TODO protocol implementation
-        if(message instanceof HandShakeMessage) {
-            // Not possible
-        }
-        else if(message instanceof GatewayInfoMessage) {
+        if(message instanceof GatewayInfoMessage) {
             // Requesting gateway info, send them the correct packet.
             String name = "GatewayServer";
             int length  = name.length();
@@ -34,5 +34,28 @@ public class Session {
             GatewayInfoMessage toSend = new GatewayInfoMessage(length, name, flag);
             channel.write(toSend);
         }
-    }
+        else if(message instanceof KeepAliveMessage) {
+            // Ignore
+        }
+        else if(message instanceof AcceptHandShakeMessage) {
+            // Ignore
+        }
+        else if(message instanceof RequestPatchInfoMessage) {
+            channel.write(new PatchInfoMessage());
+        }
+        else if(message instanceof RequestLauncherInfoMessage) {
+            //TODO send 600d, launcher news
+        }
+       else if(message instanceof RequestServerListMessage) {
+            //TODO send server list a101
+       }
+       else if(message instanceof AuthenticationMessage) {
+            //TODO authentication
+        }
+
+
+
+
+
+   }
 }

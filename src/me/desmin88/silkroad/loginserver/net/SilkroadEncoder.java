@@ -3,6 +3,7 @@ package me.desmin88.silkroad.loginserver.net;
 import com.sun.servicetag.SystemEnvironment;
 import me.desmin88.silkroad.loginserver.net.abstracts.MessageCodec;
 import me.desmin88.silkroad.loginserver.net.abstracts.Message;
+import me.desmin88.silkroad.loginserver.net.encoding.MassiveMsgEncoder;
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.buffer.ChannelBuffers;
 import org.jboss.netty.channel.Channel;
@@ -35,9 +36,15 @@ public class SilkroadEncoder extends OneToOneEncoder {
                 throw new IOException("Unknown message type: " + clazz + ".");
             }
 
+            int opCode = codec.getOpcode();
+
+            if(opCode == 0xA100) {
+                return MassiveMsgEncoder.getPatchInfo();
+            }
+
             // START: OPCODE BUFFER (TYPE: LITTLE-ENDIAN)
             ChannelBuffer opcodeBuffer = ChannelBuffers.buffer(ByteOrder.LITTLE_ENDIAN, 4);
-            opcodeBuffer.writeShort(codec.getOpcode());
+            opcodeBuffer.writeShort(opCode);
             opcodeBuffer.writeShort(0);
             // END: OPCODE BUFFER
 
@@ -56,14 +63,14 @@ public class SilkroadEncoder extends OneToOneEncoder {
             ChannelBuffer finalBuffer = ChannelBuffers.wrappedBuffer(lengthBuffer, opcodeBuffer, encodedMessage);
 
 
-            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            System.out.println("opCode = "+  codec.getOpcode());
-            System.out.println("opCodeBuffer = " + Arrays.toString(opcodeBuffer.toByteBuffer().array()));
-            System.out.println("Encoded handshake = " + Arrays.toString(codec.encode(message).toByteBuffer().array()));
-            System.out.println("length = " + length);
-            System.out.println("lengthBuffer = " + Arrays.toString(lengthBuffer.toByteBuffer().array()));
-            System.out.println(Arrays.toString(finalBuffer.toByteBuffer().array()));
-            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+//            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+//            System.out.println("opCode = "+  codec.getOpcode());
+//            System.out.println("opCodeBuffer = " + Arrays.toString(opcodeBuffer.toByteBuffer().array()));
+//            System.out.println("Encoded handshake = " + Arrays.toString(codec.encode(message).toByteBuffer().array()));
+//            System.out.println("length = " + length);
+//            System.out.println("lengthBuffer = " + Arrays.toString(lengthBuffer.toByteBuffer().array()));
+//            System.out.println(Arrays.toString(finalBuffer.toByteBuffer().array()));
+//            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
 
             return finalBuffer;

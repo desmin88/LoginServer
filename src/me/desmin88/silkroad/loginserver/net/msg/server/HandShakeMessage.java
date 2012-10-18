@@ -1,4 +1,4 @@
-package me.desmin88.silkroad.loginserver.net.msg;
+package me.desmin88.silkroad.loginserver.net.msg.server;
 
 import me.desmin88.silkroad.loginserver.net.abstracts.Message;
 

@@ -3,7 +3,9 @@ package me.desmin88.silkroad.loginserver.net;
 import me.desmin88.silkroad.loginserver.net.codec.GatewayInfoCodec;
 import me.desmin88.silkroad.loginserver.net.abstracts.MessageCodec;
 import me.desmin88.silkroad.loginserver.net.abstracts.Message;
-import me.desmin88.silkroad.loginserver.net.codec.HandShakeCodec;
+import me.desmin88.silkroad.loginserver.net.codec.client.*;
+import me.desmin88.silkroad.loginserver.net.codec.server.HandShakeCodec;
+import me.desmin88.silkroad.loginserver.net.codec.server.PatchInfoCodec;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +24,7 @@ public class CodecLookupService {
      * A table which maps opcodes to codecs. This is generally used to map
      * incoming packets to a codec.
      */
-    private static MessageCodec<?>[] opcodeTable = new MessageCodec<?>[25000];
+    private static MessageCodec<?>[] opcodeTable = new MessageCodec<?>[65536];
 
     /**
      * A table which maps messages to codecs. This is generally used to map
@@ -37,7 +39,18 @@ public class CodecLookupService {
     static {
         try {
             /* 0x00 */ bind(GatewayInfoCodec.class);
+
+                       bind(PatchInfoCodec.class);
                        bind(HandShakeCodec.class);
+
+                       // --client
+                       bind(AcceptHandShakeCodec.class);
+                       bind(AuthenticationCodec.class);
+                       bind(KeepAliveCodec.class);
+                       bind(RequestLauncherInfoCodec.class);
+                       bind(RequestPatchInfoCodec.class);
+                       bind(RequestServerListCodec.class);
+
 
         } catch (Exception ex) {
             throw new ExceptionInInitializerError(ex);
