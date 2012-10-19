@@ -1,4 +1,4 @@
-package me.desmin88.silkroad.loginserver.net.encoding;
+package me.desmin88.silkroad.loginserver.net;
 
 import me.desmin88.silkroad.loginserver.net.abstracts.Message;
 import me.desmin88.silkroad.loginserver.net.abstracts.MessageCodec;

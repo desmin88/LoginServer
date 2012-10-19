@@ -6,6 +6,7 @@ import me.desmin88.silkroad.loginserver.net.abstracts.Message;
 import me.desmin88.silkroad.loginserver.net.codec.client.*;
 import me.desmin88.silkroad.loginserver.net.codec.server.HandShakeCodec;
 import me.desmin88.silkroad.loginserver.net.codec.server.PatchInfoCodec;
+import me.desmin88.silkroad.loginserver.net.codec.server.ServerListCodec;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,7 +43,7 @@ public class CodecLookupService {
 
                        bind(PatchInfoCodec.class);
                        bind(HandShakeCodec.class);
-
+                       bind(ServerListCodec.class);
                        // --client
                        bind(AcceptHandShakeCodec.class);
                        bind(AuthenticationCodec.class);
