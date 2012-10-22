@@ -1,5 +1,6 @@
 package me.desmin88.silkroad.loginserver;
 
+import me.desmin88.silkroad.loginserver.db.MongoHelper;
 import me.desmin88.silkroad.loginserver.net.SessionRegistry;
 import me.desmin88.silkroad.loginserver.net.SilkroadPipelineFactory;
 import org.jboss.netty.bootstrap.ServerBootstrap;
@@ -51,7 +52,7 @@ public class LoginServer {
     /**
      * The registry containing all of our sessions
      */
-     private final SessionRegistry sessionRegistry = new SessionRegistry();
+    private final SessionRegistry sessionRegistry = new SessionRegistry();
 
 
     /**
@@ -79,6 +80,7 @@ public class LoginServer {
      * Initializes the server
      */
     private void init() {
+        MongoHelper.init();
         ChannelFactory factory = new NioServerSocketChannelFactory(executor, executor);
         bootstrap.setFactory(factory);
 

@@ -1,14 +1,9 @@
 package me.desmin88.silkroad.loginserver.net;
 
-import me.desmin88.silkroad.loginserver.net.abstracts.Message;
-import me.desmin88.silkroad.loginserver.net.abstracts.MessageCodec;
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.buffer.ChannelBuffers;
-import org.jboss.netty.channel.Channel;
-import org.jboss.netty.channel.ChannelHandlerContext;
 
 import java.nio.ByteOrder;
-import java.util.Arrays;
 
 /**
  * Created by William Ryan
@@ -17,7 +12,7 @@ import java.util.Arrays;
  * Time: 5:38 PM
  * Not to be distributed, modified, or repackaged at all.
  */
-public class MassiveMsgEncoder{
+public class MassiveMsgEncoder {
 
     private static ChannelBuffer patchInfo = ChannelBuffers.buffer(ByteOrder.LITTLE_ENDIAN, 19);
 
@@ -40,17 +35,8 @@ public class MassiveMsgEncoder{
 
     }
 
-
-
-
-
-
     public static Object getPatchInfo() {
-        System.out.println("Accessing patch info");
         return patchInfo.duplicate();
     }
-
-
-
 
 }

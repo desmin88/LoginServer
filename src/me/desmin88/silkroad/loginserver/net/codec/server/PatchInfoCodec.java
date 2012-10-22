@@ -24,7 +24,8 @@ public class PatchInfoCodec extends MessageCodec<PatchInfoMessage> {
 
     @Override
     public PatchInfoMessage decode(ChannelBuffer buffer) throws IOException {
-        return new PatchInfoMessage();
+        // --Will never decode this packet
+        return null;
     }
 
     @Override
@@ -33,7 +34,6 @@ public class PatchInfoCodec extends MessageCodec<PatchInfoMessage> {
         buffer.writeByte(0x01);
         return buffer;
     }
-
 
 
 }

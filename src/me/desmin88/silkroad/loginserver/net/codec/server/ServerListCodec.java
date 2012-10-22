@@ -1,7 +1,6 @@
 package me.desmin88.silkroad.loginserver.net.codec.server;
 
 import me.desmin88.silkroad.loginserver.net.abstracts.MessageCodec;
-import me.desmin88.silkroad.loginserver.net.msg.server.PatchInfoMessage;
 import me.desmin88.silkroad.loginserver.net.msg.server.ServerListMessage;
 import me.desmin88.silkroad.loginserver.utils.ChannelBufferUtils;
 import org.jboss.netty.buffer.ChannelBuffer;
@@ -25,6 +24,7 @@ public class ServerListCodec extends MessageCodec<ServerListMessage> {
 
     @Override
     public ServerListMessage decode(ChannelBuffer buffer) throws IOException {
+        // --Will never decode this packet
         return null;
     }
 
@@ -39,10 +39,10 @@ public class ServerListCodec extends MessageCodec<ServerListMessage> {
         buffer.writeByte(0x00);
 
         buffer.writeByte(0x01);
-        buffer.writeByte(18);
-        ChannelBufferUtils.writeUtf8String(buffer, "SRO_EMU");
-        buffer.writeByte(0);
-        buffer.writeByte(100);
+        buffer.writeShort(19);
+        ChannelBufferUtils.writeUtf8String(buffer, "Tespia");
+        buffer.writeShort(0);
+        buffer.writeShort(100);
         buffer.writeByte(0x01);
 
         buffer.writeByte(0x00);

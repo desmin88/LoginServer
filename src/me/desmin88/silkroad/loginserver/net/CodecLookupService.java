@@ -1,8 +1,8 @@
 package me.desmin88.silkroad.loginserver.net;
 
-import me.desmin88.silkroad.loginserver.net.codec.GatewayInfoCodec;
-import me.desmin88.silkroad.loginserver.net.abstracts.MessageCodec;
 import me.desmin88.silkroad.loginserver.net.abstracts.Message;
+import me.desmin88.silkroad.loginserver.net.abstracts.MessageCodec;
+import me.desmin88.silkroad.loginserver.net.codec.GatewayInfoCodec;
 import me.desmin88.silkroad.loginserver.net.codec.client.*;
 import me.desmin88.silkroad.loginserver.net.codec.server.HandShakeCodec;
 import me.desmin88.silkroad.loginserver.net.codec.server.PatchInfoCodec;
@@ -39,18 +39,19 @@ public class CodecLookupService {
 
     static {
         try {
-            /* 0x00 */ bind(GatewayInfoCodec.class);
+            /* 0x00 */
+            bind(GatewayInfoCodec.class);
 
-                       bind(PatchInfoCodec.class);
-                       bind(HandShakeCodec.class);
-                       bind(ServerListCodec.class);
-                       // --client
-                       bind(AcceptHandShakeCodec.class);
-                       bind(AuthenticationCodec.class);
-                       bind(KeepAliveCodec.class);
-                       bind(RequestLauncherInfoCodec.class);
-                       bind(RequestPatchInfoCodec.class);
-                       bind(RequestServerListCodec.class);
+            bind(PatchInfoCodec.class);
+            bind(HandShakeCodec.class);
+            bind(ServerListCodec.class);
+            // --client
+            bind(AcceptHandShakeCodec.class);
+            bind(AuthenticationCodec.class);
+            bind(KeepAliveCodec.class);
+            bind(RequestLauncherInfoCodec.class);
+            bind(RequestPatchInfoCodec.class);
+            bind(RequestServerListCodec.class);
 
 
         } catch (Exception ex) {
@@ -67,14 +68,15 @@ public class CodecLookupService {
 
 
     public static MessageCodec<?> find(int opcode) {
-        if(opcode == -28672)
+        if (opcode == -28672)
             return opcodeTable[0x9000];
         return opcodeTable[opcode];
     }
 
     /**
      * Finds a codec by message class.
-     * @param <T> The type of message.
+     *
+     * @param <T>   The type of message.
      * @param clazz The message class.
      * @return The codec, or {@code null} if it could not be found.
      */
@@ -82,7 +84,6 @@ public class CodecLookupService {
     public static <T extends Message> MessageCodec<T> find(Class<T> clazz) {
         return (MessageCodec<T>) classTable.get(clazz);
     }
-
 
 
 }

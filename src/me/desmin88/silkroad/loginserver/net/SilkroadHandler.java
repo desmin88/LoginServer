@@ -22,11 +22,13 @@ public class SilkroadHandler extends SimpleChannelUpstreamHandler {
 
     /**
      * Creates a new network event handler.
+     *
      * @param server The server.
      */
     public SilkroadHandler(LoginServer server) {
         this.server = server;
     }
+
     @Override
     public void channelConnected(ChannelHandlerContext ctx, ChannelStateEvent e) {
         Channel c = e.getChannel();

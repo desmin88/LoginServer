@@ -1,7 +1,7 @@
 package me.desmin88.silkroad.loginserver.net;
 
-import me.desmin88.silkroad.loginserver.net.abstracts.MessageCodec;
 import me.desmin88.silkroad.loginserver.net.abstracts.Message;
+import me.desmin88.silkroad.loginserver.net.abstracts.MessageCodec;
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.buffer.ChannelBuffers;
 import org.jboss.netty.channel.Channel;
@@ -35,7 +35,7 @@ public class SilkroadEncoder extends OneToOneEncoder {
 
             int opCode = codec.getOpcode();
 
-            if(opCode == 0xA100) {
+            if (opCode == 0xA100) {
                 return MassiveMsgEncoder.getPatchInfo();
             }
 

@@ -17,10 +17,11 @@ public class ChannelBufferUtils {
 
     /**
      * Writes a string to the buffer.
+     *
      * @param buf The buffer.
      * @param str The string.
      * @throws IllegalArgumentException if the string is too long
-     * <em>after</em> it is encoded.
+     *                                  <em>after</em> it is encoded.
      */
     public static void writeString(ChannelBuffer buf, String str) {
         int len = str.length();
@@ -36,10 +37,11 @@ public class ChannelBufferUtils {
 
     /**
      * Writes a UTF-8 string to the buffer.
+     *
      * @param buf The buffer.
      * @param str The string.
      * @throws IllegalArgumentException if the string is too long
-     * <em>after</em> it is encoded.
+     *                                  <em>after</em> it is encoded.
      */
     public static void writeUtf8String(ChannelBuffer buf, String str) {
         byte[] bytes = str.getBytes(CHARSET_UTF8);
@@ -53,6 +55,7 @@ public class ChannelBufferUtils {
 
     /**
      * Reads a string from the buffer.
+     *
      * @param buf The buffer.
      * @return The string.
      */
@@ -69,6 +72,7 @@ public class ChannelBufferUtils {
 
     /**
      * Reads a UTF-8 encoded string from the buffer.
+     *
      * @param buf The buffer.
      * @return The string.
      */

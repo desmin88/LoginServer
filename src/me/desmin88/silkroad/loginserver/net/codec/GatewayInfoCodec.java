@@ -42,7 +42,7 @@ public class GatewayInfoCodec extends MessageCodec<GatewayInfoMessage> {
         //buffer.writeShort(message.getNameLength());
         //buffer.writeBytes(message.getName().getBytes());
         ChannelBufferUtils.writeUtf8String(buffer, message.getName());
-        if(message.getFlag())
+        if (message.getFlag())
             buffer.writeByte(1);
         else
             buffer.writeByte(0);

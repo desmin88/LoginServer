@@ -4,11 +4,8 @@ import me.desmin88.silkroad.loginserver.net.abstracts.MessageCodec;
 import me.desmin88.silkroad.loginserver.net.msg.client.RequestPatchInfoMessage;
 import me.desmin88.silkroad.loginserver.utils.ChannelBufferUtils;
 import org.jboss.netty.buffer.ChannelBuffer;
-import org.jboss.netty.buffer.ChannelBuffers;
 
 import java.io.IOException;
-import java.nio.ByteOrder;
-import java.util.Arrays;
 
 /**
  * Created by William Ryan
@@ -37,9 +34,6 @@ public class RequestPatchInfoCodec extends MessageCodec<RequestPatchInfoMessage>
         // --Will never send this packet
         return null;
     }
-
-
-
 
 
 }

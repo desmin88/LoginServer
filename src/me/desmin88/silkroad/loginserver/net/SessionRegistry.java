@@ -12,13 +12,14 @@ import java.util.concurrent.ConcurrentMap;
  */
 public class SessionRegistry {
 
-     /**
-      * A list of all the maintained launcher connections
-      */
-     private final ConcurrentMap<Session, Boolean> sessions = new ConcurrentHashMap<Session, Boolean>();
+    /**
+     * A list of all the maintained launcher connections
+     */
+    private final ConcurrentMap<Session, Boolean> sessions = new ConcurrentHashMap<Session, Boolean>();
 
     /**
      * Adds a new launcher session.
+     *
      * @param session The session to add.
      */
     public void add(Session session) {
@@ -28,6 +29,7 @@ public class SessionRegistry {
 
     /**
      * Removes a launcher session.
+     *
      * @param session The session to remove.
      */
     public void remove(Session session) {

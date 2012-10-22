@@ -18,7 +18,7 @@ public class ServerListMessage extends Message {
 
     public byte nameLength = 0;
 
-    public String name ="SRO_Global_TestBed";
+    public String name = "SRO_Global_TestBed";
 
     //NameServer: End
 

@@ -3,11 +3,8 @@ package me.desmin88.silkroad.loginserver.net.codec.client;
 import me.desmin88.silkroad.loginserver.net.abstracts.MessageCodec;
 import me.desmin88.silkroad.loginserver.net.msg.client.RequestLauncherInfoMessage;
 import org.jboss.netty.buffer.ChannelBuffer;
-import org.jboss.netty.buffer.ChannelBuffers;
 
 import java.io.IOException;
-import java.nio.ByteOrder;
-import java.util.Arrays;
 
 /**
  * Created by William Ryan
@@ -33,11 +30,6 @@ public class RequestLauncherInfoCodec extends MessageCodec<RequestLauncherInfoMe
         // --Will never send this packet
         return null;
     }
-
-
-
-
-
 
 
 }

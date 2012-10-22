@@ -19,12 +19,12 @@ public class SilkroadPacketFrameDecoder extends FrameDecoder {
 
     private int previousOpcode = -1;
 
-    protected Object decode(ChannelHandlerContext ctx, Channel ch, ChannelBuffer buf) throws Exception  {
+    protected Object decode(ChannelHandlerContext ctx, Channel ch, ChannelBuffer buf) throws Exception {
         short length = -1;
         short opcode = -1;
         short security = -1;
 
-        if(buf.readableBytes() < 6) {
+        if (buf.readableBytes() < 6) {
             // Length header + opcode + security not received
             return null;
         }

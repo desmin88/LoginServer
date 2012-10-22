@@ -3,10 +3,8 @@ package me.desmin88.silkroad.loginserver.net.codec.client;
 import me.desmin88.silkroad.loginserver.net.abstracts.MessageCodec;
 import me.desmin88.silkroad.loginserver.net.msg.client.RequestServerListMessage;
 import org.jboss.netty.buffer.ChannelBuffer;
-import org.jboss.netty.buffer.ChannelBuffers;
 
 import java.io.IOException;
-import java.nio.ByteOrder;
 
 /**
  * Created by William Ryan
@@ -17,7 +15,7 @@ import java.nio.ByteOrder;
  */
 public class RequestServerListCodec extends MessageCodec<RequestServerListMessage> {
 
-    public RequestServerListCodec () {
+    public RequestServerListCodec() {
         super(RequestServerListMessage.class, 0x6101);
     }
 
@@ -32,8 +30,6 @@ public class RequestServerListCodec extends MessageCodec<RequestServerListMessag
         // --Will never send this packet
         return null;
     }
-
-
 
 
 }

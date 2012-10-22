@@ -1,11 +1,14 @@
 package me.desmin88.silkroad.loginserver.net;
 
+import com.mongodb.BasicDBObject;
+import me.desmin88.silkroad.loginserver.db.MongoHelper;
 import me.desmin88.silkroad.loginserver.net.abstracts.Message;
 import me.desmin88.silkroad.loginserver.net.msg.GatewayInfoMessage;
 import me.desmin88.silkroad.loginserver.net.msg.client.*;
 import me.desmin88.silkroad.loginserver.net.msg.server.HandShakeMessage;
 import me.desmin88.silkroad.loginserver.net.msg.server.PatchInfoMessage;
 import me.desmin88.silkroad.loginserver.net.msg.server.ServerListMessage;
+import me.desmin88.silkroad.loginserver.utils.HashUtils;
 import org.jboss.netty.channel.Channel;
 
 /**
@@ -19,40 +22,53 @@ public class Session {
 
     private Channel channel = null;
 
+    private int failedLogins = 0;
+
     public Session(Channel channel) {
         this.channel = channel;
         channel.write(new HandShakeMessage((byte) 0x01));
     }
 
     public void messageReceived(Message message) {
-        //TODO protocol implementation
+
         if (message instanceof GatewayInfoMessage) {
-            // Requesting gateway info, send them the correct packet.
+            // RECEIVED: 0x2001, SEND: 0x2001
             String name = "GatewayServer";
             int length = name.length();
             boolean flag = true;
             GatewayInfoMessage toSend = new GatewayInfoMessage(length, name, flag);
             channel.write(toSend);
         }
-        else if (message instanceof RequestPatchInfoMessage) {
+        if (message instanceof RequestPatchInfoMessage) {
+            // RECEIVED: 0x6100, SEND: 0xA100
             channel.write(new PatchInfoMessage());
         }
-
-        else if (message instanceof RequestServerListMessage) {
+        if (message instanceof RequestServerListMessage) {
+            // RECEIVED: 0x6101, SEND: 0xA101
             channel.write(new ServerListMessage());
         }
 
-        else if (message instanceof AuthenticationMessage) {
-            //TODO authentication
+        if (message instanceof AuthenticationMessage) {
+            // RECEIVED: 0x6102, SEND: 0xA102
+            AuthenticationMessage authenticationMessage = (AuthenticationMessage) message;
+            String username = authenticationMessage.getUsername();
+            String password = authenticationMessage.getPassword();
+            int serverID = authenticationMessage.getGameServerID();
+
+            BasicDBObject query = new BasicDBObject();
+
+            query.put("username", username);
+            query.put("passwordHash", HashUtils.getHash(password));
+            MongoHelper.getCollection().find(query).
+
+
 
         }
 
-        else if (message instanceof KeepAliveMessage) {
-            // Ignore - Sent every 5 seconds with no data
-        } else if (message instanceof AcceptHandShakeMessage) {
-            // Ignore - Sent after 0x5000 with no data
-        } else if (message instanceof RequestLauncherInfoMessage) {
-            // Ignore - Unknown Structure
+        if (message instanceof KeepAliveMessage || message instanceof AcceptHandShakeMessage || message instanceof RequestLauncherInfoMessage) {
+            // 1. Ignore - Sent every 5 seconds with no data
+            // 2. Ignore - Sent after 0x5000 with no data
+            // 3. Ignore - Unknown Structure
         }
 
 

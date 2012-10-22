@@ -4,10 +4,8 @@ import me.desmin88.silkroad.loginserver.net.abstracts.MessageCodec;
 import me.desmin88.silkroad.loginserver.net.msg.client.AuthenticationMessage;
 import me.desmin88.silkroad.loginserver.utils.ChannelBufferUtils;
 import org.jboss.netty.buffer.ChannelBuffer;
-import org.jboss.netty.buffer.ChannelBuffers;
 
 import java.io.IOException;
-import java.nio.ByteOrder;
 
 /**
  * Created by William Ryan
@@ -19,7 +17,7 @@ import java.nio.ByteOrder;
 public class AuthenticationCodec extends MessageCodec<AuthenticationMessage> {
 
     public AuthenticationCodec() {
-        super(AuthenticationMessage.class, 0x6002);
+        super(AuthenticationMessage.class, 0x6102);
     }
 
 
@@ -27,7 +25,8 @@ public class AuthenticationCodec extends MessageCodec<AuthenticationMessage> {
     public AuthenticationMessage decode(ChannelBuffer buffer) throws IOException {
         byte locale = buffer.readByte();
         String username = ChannelBufferUtils.readUtf8String(buffer);
-        String password = ChannelBufferUtils.readUtf8String(buffer);;
+        String password = ChannelBufferUtils.readUtf8String(buffer);
+
         byte usernameLength = (byte) username.length();
         byte passwordLength = (byte) password.length();
         byte padding = buffer.readByte();

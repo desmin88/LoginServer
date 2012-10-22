@@ -21,6 +21,7 @@ public class SilkroadPipelineFactory implements ChannelPipelineFactory {
 
     /**
      * Creates a new Silkroad pipeline factory.
+     *
      * @param server The server.
      */
     public SilkroadPipelineFactory(LoginServer server) {

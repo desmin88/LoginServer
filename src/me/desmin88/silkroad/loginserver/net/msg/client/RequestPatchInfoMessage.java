@@ -16,7 +16,7 @@ public class RequestPatchInfoMessage extends Message {
     private String clientName;
     private int clientVersion;
 
-    public RequestPatchInfoMessage(byte locale, byte nameLength, String clientName, int clientVersion)  {
+    public RequestPatchInfoMessage(byte locale, byte nameLength, String clientName, int clientVersion) {
         this.locale = locale;
         this.nameLength = nameLength;
         this.clientName = clientName;

@@ -3,10 +3,8 @@ package me.desmin88.silkroad.loginserver.net.codec.client;
 import me.desmin88.silkroad.loginserver.net.abstracts.MessageCodec;
 import me.desmin88.silkroad.loginserver.net.msg.client.KeepAliveMessage;
 import org.jboss.netty.buffer.ChannelBuffer;
-import org.jboss.netty.buffer.ChannelBuffers;
 
 import java.io.IOException;
-import java.nio.ByteOrder;
 
 /**
  * Created by William Ryan
@@ -32,13 +30,6 @@ public class KeepAliveCodec extends MessageCodec<KeepAliveMessage> {
         // --Will never send this packet
         return null;
     }
-
-
-
-
-
-
-
 
 
 }

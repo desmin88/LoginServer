@@ -22,10 +22,9 @@ public class HandShakeCodec extends MessageCodec<HandShakeMessage> {
     }
 
 
-
     public HandShakeMessage decode(ChannelBuffer buffer) throws IOException {
-        byte handShake = buffer.readByte();
-        return new HandShakeMessage(handShake);
+        // --Will never decode this packet
+        return null;
     }
 
     @Override
@@ -34,7 +33,6 @@ public class HandShakeCodec extends MessageCodec<HandShakeMessage> {
         buffer.writeByte(message.getHandShake());
         return buffer;
     }
-
 
 
 }
