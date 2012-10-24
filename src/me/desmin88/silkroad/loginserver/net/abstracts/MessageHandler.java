@@ -14,9 +14,7 @@ public abstract class MessageHandler<T extends Message> {
     /*
      * Handles a incoming message
      */
-    public void handle(Session session, T message) {
-
-    }
+    public abstract void handle(Session session, T message);
 
 
 }

@@ -1,9 +1,14 @@
 package me.desmin88.silkroad.loginserver.db;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParser;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.Mongo;
 import com.mongodb.WriteConcern;
+import me.desmin88.silkroad.loginserver.db.definitions.UserAccount;
+import org.jboss.netty.channel.StaticChannelPipeline;
 
 import java.net.UnknownHostException;
 import java.util.logging.Level;
@@ -26,6 +31,8 @@ public class MongoHelper {
 
     private static DBCollection dbCollection;
 
+    private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
     public static void init() {
         logger.info("Initializing MongoDB...");
 
@@ -38,7 +45,7 @@ public class MongoHelper {
 
         database = mongo.getDB("SilkroadDB");
         mongo.setWriteConcern(WriteConcern.SAFE);
-        database.getCollection("userInfo");
+        dbCollection = database.getCollection("userInfo");
 
         logger.info("MongoDB Initialization complete...");
     }
@@ -48,9 +55,9 @@ public class MongoHelper {
         return dbCollection;
     }
 
-
-
-
+    public static Gson getGson() {
+        return gson;
+    }
 
 
 
