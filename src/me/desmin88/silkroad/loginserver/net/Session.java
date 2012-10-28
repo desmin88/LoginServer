@@ -47,4 +47,11 @@ public class Session {
 
     }
 
+    public int getFailedLogins() {
+        return failedLogins;
+    }
+
+    public void incrementFailedLogins() {
+        this.failedLogins++;
+    }
 }

@@ -16,11 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by William Ryan
- * User: Billy
- * Date: 10/22/12
- * Time: 5:23 PM
- * Not to be distributed, modified, or repackaged at all.
+ * Credit to SpoutServer + Vanilla, not created by me. To be replaced
  */
 public class HandlerLookupService {
 

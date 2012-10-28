@@ -35,10 +35,6 @@ public class SilkroadEncoder extends OneToOneEncoder {
 
             int opCode = codec.getOpcode();
 
-//            if (opCode == 0xA100) {
-//                return MassiveMsgEncoder.getPatchInfo();
-//            }
-
             // START: OPCODE BUFFER (TYPE: LITTLE-ENDIAN)
             ChannelBuffer opcodeBuffer = ChannelBuffers.buffer(ByteOrder.LITTLE_ENDIAN, 4);
             opcodeBuffer.writeShort(opCode);

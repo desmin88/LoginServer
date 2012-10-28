@@ -45,12 +45,12 @@ public class SilkroadPacketFrameDecoder extends FrameDecoder {
             throw new IOException("Unknown op code: " + opcode + " (previous opcode: " + previousOpcode + ").");
         }
 
-        System.out.println("DEBUG:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.println("DEBUG:receivedLength: " + length);
-        System.out.println("DEBUG:receivedOPCode: " + opcode);
-        System.out.println("DEBUG:receivedSecurity: " + security);
-        System.out.println("DEBUG:Codec being used: " + codec.getClass().getSimpleName());
-        System.out.println("DEBUG:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+//        System.out.println("DEBUG:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+//        System.out.println("DEBUG:receivedLength: " + length);
+//        System.out.println("DEBUG:receivedOPCode: " + opcode);
+//        System.out.println("DEBUG:receivedSecurity: " + security);
+//        System.out.println("DEBUG:Codec being used: " + codec.getClass().getSimpleName());
+//        System.out.println("DEBUG:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
         this.previousOpcode = opcode;
 

@@ -12,11 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by William Ryan
- * User: Billy
- * Date: 10/9/12
- * Time: 5:35 PM
- * Not to be distributed, modified, or repackaged at all.
+ * Credit to SpoutServer + Vanilla, not created by me. To be replaced
  */
 public class CodecLookupService {
 
@@ -73,14 +69,7 @@ public class CodecLookupService {
         return opcodeTable[opcode];
     }
 
-    /**
-     * Finds a codec by message class.
-     *
-     * @param <T>   The type of message.
-     * @param clazz The message class.
-     * @return The codec, or {@code null} if it could not be found.
-     */
-    @SuppressWarnings("unchecked")
+
     public static <T extends Message> MessageCodec<T> find(Class<T> clazz) {
         return (MessageCodec<T>) classTable.get(clazz);
     }
